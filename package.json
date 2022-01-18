@@ -1,0 +1,18 @@
+{
+  "name": "must-should-can",
+  "version": "1.0.0",
+  "description": "Build scripts for deploying",
+  "scripts": {
+    "clean": "rm -rf public",
+    "build": "npm install --prefix client && npm run build --prefix client",
+    "deploy": "cp -a client/build/. public/",
+    "heroku-postbuild": "npm run build && npm run clean && npm run deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joedietrich-dev/must-should-can.git"
+  },
+  "author": "Joe Dietrich",
+  "license": "MIT",
+  "homepage": "https://github.com/joedietrich-dev/must-should-can#readme"
+}
