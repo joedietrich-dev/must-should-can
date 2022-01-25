@@ -1,18 +1,20 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import LogoutButton from "./LogoutButton";
 
-function Navigation() {
+function Navigation({ user, onLogout }) {
   return (
     <nav>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <NavLink to="/">Home</NavLink>
         </li>
         <li>
-          <Link to="/login">Login</Link>
+          <NavLink to="/login">Login</NavLink>
         </li>
         <li>
-          <Link to="/signup">Sign Up</Link>
+          <NavLink to="/signup">Sign Up</NavLink>
         </li>
+        {user ? <LogoutButton onLogout={onLogout} /> : null}
       </ul>
     </nav>
   );

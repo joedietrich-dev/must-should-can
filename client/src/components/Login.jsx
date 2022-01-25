@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Login() {
+function Login({ onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -19,7 +19,7 @@ function Login() {
     });
     if (res.ok) {
       const data = await res.json();
-      console.log(data);
+      onLogin(data);
     } else {
       const data = await res.json();
       setError([data.error]);
