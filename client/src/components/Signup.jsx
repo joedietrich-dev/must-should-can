@@ -25,9 +25,8 @@ function Signup() {
       const data = await res.json();
       console.log(data);
     } else {
-      const errs = await res.json();
-      setErrors(errs);
-      console.log(errs);
+      const data = await res.json();
+      setErrors(data.errors);
     }
   }
 
@@ -43,7 +42,7 @@ function Signup() {
         <input type="password" id="password_confirmation" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)} />
         <input type="submit" value="Create Account" />
       </form>
-      {errors ? errors.map((error) => <p>{error}</p>) : null}
+      {errors ? errors.map((error) => <p key={error}>{error}</p>) : null}
     </div>
   );
 }
