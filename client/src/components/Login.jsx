@@ -1,30 +1,35 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "./common/UserContext";
 
-function Login({ onLogin }) {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+
+  const user = useContext(UserContext);
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const res = await fetch("/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    });
-    if (res.ok) {
-      const data = await res.json();
-      onLogin(data);
-    } else {
-      const data = await res.json();
-      setError([data.error]);
-      console.log(data);
-    }
+    user.login({ email, password }, () => navigate("/main"));
+    // const res = await fetch("/login", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     email,
+    //     password,
+    //   }),
+    // });
+    // if (res.ok) {
+    //   const returningUser = await res.json();
+    //   user.login(returningUser, () => navigate("/main"));
+    // } else {
+    //   const data = await res.json();
+    //   setError([data.error]);
+    //   console.log(data);
+    // }
   }
 
   return (
@@ -37,7 +42,7 @@ function Login({ onLogin }) {
         <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         <input type="submit" value="Login" />
       </form>
-      {error ? <p>{error}</p> : null}
+      {user.errors ? <p>{user.errors}</p> : null}
     </div>
   );
 }

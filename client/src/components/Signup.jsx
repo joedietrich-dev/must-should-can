@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [errors, setErrors] = useState([]);
+  const [success, setSuccess] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -23,7 +25,7 @@ function Signup() {
     });
     if (res.ok) {
       const data = await res.json();
-      console.log(data);
+      setSuccess(true);
     } else {
       const data = await res.json();
       setErrors(data.errors);
@@ -42,6 +44,11 @@ function Signup() {
         <input type="password" id="password_confirmation" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)} />
         <input type="submit" value="Create Account" />
       </form>
+      {success ? (
+        <p>
+          You have successfully created an account, please <Link to="/login">Login</Link> using your new credentials.
+        </p>
+      ) : null}
       {errors ? errors.map((error) => <p key={error}>{error}</p>) : null}
     </div>
   );
