@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -24,7 +24,6 @@ function Signup() {
       }),
     });
     if (res.ok) {
-      const data = await res.json();
       navigate("/signup-success");
     } else {
       const data = await res.json();
