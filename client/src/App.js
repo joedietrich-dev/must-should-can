@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Main from "./components/Main";
+import SignupSuccess from "./components/SignupSuccess";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -51,6 +52,7 @@ function App() {
         <Route path="/" element={<Home user={user} />} />
         <Route path="/login" element={<Login user={user} onLogin={handleLogin} />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/signup-success" element={<SignupSuccess />} />
         <Route path="/main" element={<Main user={user} />} />
       </Routes>
     </div>
