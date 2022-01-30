@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
 
-function Login({ onLogin }) {
+function Login({ user, onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -27,6 +28,9 @@ function Login({ onLogin }) {
     }
   }
 
+  if (user) {
+    return <Navigate to="/main" />;
+  }
   return (
     <div>
       <h1>Login</h1>

@@ -9,14 +9,20 @@ import Main from "./components/Main";
 
 function App() {
   const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
+  async function fetchPersistedUser() {
+    const res = await fetch("/me");
+    if (res.ok) {
+      const persistedUser = await res.json();
+      setUser(persistedUser);
+    }
+    setIsLoading(false);
+  }
+
   useEffect(() => {
-    fetch("/me").then((res) => {
-      if (res.ok) {
-        res.json().then(setUser);
-      }
-    });
+    fetchPersistedUser();
   }, []);
 
   const handleLogout = () => {
@@ -29,13 +35,21 @@ function App() {
     navigate("/main");
   };
 
+  if (isLoading) {
+    return (
+      <div>
+        <Navigation user={user} onLogout={handleLogout} />
+      </div>
+    );
+  }
+
   return (
     <div>
       <Navigation user={user} onLogout={handleLogout} />
       {user ? <p>Welcome {user.name ? user.name : user.email}</p> : null}
       <Routes>
         <Route path="/" element={<Home user={user} />} />
-        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        <Route path="/login" element={<Login user={user} onLogin={handleLogin} />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/main" element={<Main user={user} />} />
       </Routes>
