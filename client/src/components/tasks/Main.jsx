@@ -1,4 +1,5 @@
 import { Navigate } from "react-router-dom";
+import TaskList from "./TaskList";
 
 function Main({ user }) {
   if (!user) {
@@ -7,6 +8,7 @@ function Main({ user }) {
   return (
     <main>
       <h1>TASKS</h1>
+      <TaskList />
     </main>
   );
 }
