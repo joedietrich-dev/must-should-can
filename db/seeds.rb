@@ -28,7 +28,10 @@ tasks = Task.create(
   [
     { description: "Fix the house", status: statuses.first, user: users.first },
     { description: "Call the realtor", status: statuses.second, user: users.first },
-    { description: "Find a place", status: statuses.third, user: users.first }
+    { description: "Find a place", status: statuses.third, user: users.first },
+    { description: "Fix the apartment", status: statuses.first, user: users.second },
+    { description: "Call the real estate agent", status: statuses.second, user: users.second },
+    { description: "Find a dwelling", status: statuses.third, user: users.second }
   ]
 )
 
