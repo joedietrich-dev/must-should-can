@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   # GET /tasks
   def index
     @user = User.find(session[:user_id])
-    @tasks = Task.find_by(user: @user)
+    @tasks = Task.where(user: @user)
     puts @user
     render json: @tasks
   end
