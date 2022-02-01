@@ -6,7 +6,7 @@ import Home from "./components/Home";
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
 import SignupSuccess from "./components/auth/SignupSuccess";
-import Main from "./components/Main";
+import Main from "./components/tasks/Main";
 
 function App() {
   const [user, setUser] = useState(null);
