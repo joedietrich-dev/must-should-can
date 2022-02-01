@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Navigation from "./components/common/Navigation";
 import Home from "./components/Home";
-import Login from "./components/Login";
-import Signup from "./components/Signup";
+import Login from "./components/auth/Login";
+import Signup from "./components/auth/Signup";
+import SignupSuccess from "./components/auth/SignupSuccess";
 import Main from "./components/Main";
-import SignupSuccess from "./components/SignupSuccess";
 
 function App() {
   const [user, setUser] = useState(null);
