@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import StatusGroup from "./StatusGroup";
+import TaskStatusGroup from "./TaskStatusGroup";
 
 function TaskList() {
   const [tasks, setTasks] = useState([]);
@@ -32,9 +32,9 @@ function TaskList() {
       ) : (
         <div>
           <button>Reset</button>
-          <StatusGroup tasks={tasks} status={"Must"} />
-          <StatusGroup tasks={tasks} status={"Should"} />
-          <StatusGroup tasks={tasks} status={"Can"} />
+          <TaskStatusGroup tasks={tasks} status={"Must"} />
+          <TaskStatusGroup tasks={tasks} status={"Should"} />
+          <TaskStatusGroup tasks={tasks} status={"Can"} />
         </div>
       )}
     </>
