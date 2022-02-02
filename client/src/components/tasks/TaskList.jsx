@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
+import StatusGroup from "./StatusGroup";
 
 function TaskList() {
   const [tasks, setTasks] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-
-  const filterTasks = (status) => tasks.filter((task) => task.status.name === status);
 
   async function fetchTasks() {
     const res = await fetch("/tasks");
@@ -27,20 +26,18 @@ function TaskList() {
 
   console.log(tasks);
   return (
-    <div>
-      <h2>Must</h2>
-      {filterTasks("Must").map((task) => (
-        <p key={task.id}>{task.description}</p>
-      ))}
-      <h2>Should</h2>
-      {filterTasks("Should").map((task) => (
-        <p key={task.id}>{task.description}</p>
-      ))}
-      <h2>Can</h2>
-      {filterTasks("Can").map((task) => (
-        <p key={task.id}>{task.description}</p>
-      ))}
-    </div>
+    <>
+      {isLoading ? (
+        <p>Loading</p>
+      ) : (
+        <div>
+          <button>Reset</button>
+          <StatusGroup tasks={tasks} status={"Must"} />
+          <StatusGroup tasks={tasks} status={"Should"} />
+          <StatusGroup tasks={tasks} status={"Can"} />
+        </div>
+      )}
+    </>
   );
 }
 
