@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { STATUS } from "./statuses";
 import TaskStatusGroup from "./TaskStatusGroup";
 
 function TaskList() {
@@ -24,17 +25,66 @@ function TaskList() {
     fetchTasks();
   }, []);
 
-  console.log(tasks);
+  async function handleAddTask(status) {
+    const res = await fetch("/tasks", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        status_id: STATUS[status],
+        description: "",
+      }),
+    });
+    const task = await res.json();
+    if (task) {
+      setTasks([...tasks, task]);
+    }
+  }
+  async function handleEditTask(editedTask) {
+    const res = await fetch(`/tasks/${editedTask.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(editedTask),
+    });
+    const task = await res.json();
+    if (task) {
+      const newTasks = tasks.map((t) => {
+        if (t.id === task.id) {
+          return {
+            ...t,
+            ...task,
+          };
+        } else {
+          return t;
+        }
+      });
+      setTasks(newTasks);
+    }
+  }
+  async function handleDeleteTask(deletedTask) {
+    const res = await fetch(`/tasks/${deletedTask.id}`, {
+      method: "DELETE",
+    });
+    if (res.ok) {
+      const newTasks = tasks.filter((task) => task.id !== deletedTask.id);
+      setTasks(newTasks);
+    }
+  }
+
   return (
     <>
       {isLoading ? (
         <p>Loading</p>
       ) : (
         <div>
+          {console.log(tasks)}
           <button>Reset</button>
-          <TaskStatusGroup tasks={tasks} status={"Must"} />
-          <TaskStatusGroup tasks={tasks} status={"Should"} />
-          <TaskStatusGroup tasks={tasks} status={"Can"} />
+          <TaskStatusGroup onAddTask={handleAddTask} onDeleteTask={handleDeleteTask} onEditTask={handleEditTask} tasks={tasks} status={"Must"} />
+          <TaskStatusGroup onAddTask={handleAddTask} onDeleteTask={handleDeleteTask} onEditTask={handleEditTask} tasks={tasks} status={"Should"} />
+          <TaskStatusGroup onAddTask={handleAddTask} onDeleteTask={handleDeleteTask} onEditTask={handleEditTask} tasks={tasks} status={"Can"} />
         </div>
       )}
     </>

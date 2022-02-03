@@ -1,28 +1,16 @@
-import { STATUS } from "./statuses";
 import Task from "./Task";
 
-function TaskStatusGroup({ tasks, status }) {
+function TaskStatusGroup({ tasks, status, onAddTask, onDeleteTask, onEditTask }) {
   const filterTasks = (status) => tasks.filter((task) => task.status.name === status);
-  const handleAddClick = (e) => {
-    fetch("/tasks", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        status_id: STATUS[status],
-        description: "aaa",
-      }),
-    })
-      .then((res) => res.json())
-      .then(console.log);
+  const handleAddClick = () => {
+    onAddTask(status);
   };
 
   return (
     <div>
       <h2>{status}</h2>
       {filterTasks(status).map((task) => (
-        <Task key={task.id} task={task} />
+        <Task key={task.id} task={task} onDeleteTask={onDeleteTask} onEditTask={onEditTask} />
       ))}
       <button onClick={handleAddClick}>Add {status}</button>
     </div>
