@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :tasks do
+    resources :status_resets, only: [:create]
+  end
   resources :users
   resources :tasks, only: [:index, :create, :destroy, :update]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

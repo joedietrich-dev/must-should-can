@@ -73,6 +73,15 @@ function TaskList() {
       setTasks(newTasks);
     }
   }
+  async function handleResetStatuses() {
+    const res = await fetch(`/tasks/status_resets/`, {
+      method: "POST",
+    });
+    if (res.ok) {
+      const newTasks = await res.json();
+      setTasks(newTasks);
+    }
+  }
 
   return (
     <>
@@ -81,7 +90,7 @@ function TaskList() {
       ) : (
         <div>
           {console.log(tasks)}
-          <button>Reset</button>
+          <button onClick={handleResetStatuses}>Reset</button>
           <TaskStatusGroup onAddTask={handleAddTask} onDeleteTask={handleDeleteTask} onEditTask={handleEditTask} tasks={tasks} status={"Must"} />
           <TaskStatusGroup onAddTask={handleAddTask} onDeleteTask={handleDeleteTask} onEditTask={handleEditTask} tasks={tasks} status={"Should"} />
           <TaskStatusGroup onAddTask={handleAddTask} onDeleteTask={handleDeleteTask} onEditTask={handleEditTask} tasks={tasks} status={"Can"} />
