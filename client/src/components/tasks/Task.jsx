@@ -1,3 +1,6 @@
+import { STATUS } from "./statuses";
+import TaskList from "./TaskList";
+
 function Task({ task, onDeleteTask, onEditTask }) {
   const isComplete = task.completed_date ? true : false;
   const handleDeleteTask = () => {
@@ -15,11 +18,26 @@ function Task({ task, onDeleteTask, onEditTask }) {
       onEditTask({ id: task.id, completed_date: null });
     }
   };
+  const handleStatusClick = (e) => {
+    const status = e.target.name;
+    if (status !== task.status) {
+      onEditTask({ id: task.id, status_id: STATUS[status] });
+    }
+  };
   return (
     <div>
       <input type="checkbox" onChange={handleCompleteChange} checked={isComplete} />
       <input type="text" defaultValue={task.description} onBlur={handleDescriptionBlur} />
       <button onClick={handleDeleteTask}>X</button>
+      <button onClick={handleStatusClick} name="Must">
+        M
+      </button>
+      <button onClick={handleStatusClick} name="Should">
+        S
+      </button>
+      <button onClick={handleStatusClick} name="Must">
+        C
+      </button>
     </div>
   );
 }

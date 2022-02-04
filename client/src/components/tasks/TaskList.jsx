@@ -83,17 +83,37 @@ function TaskList() {
     }
   }
 
+  const orderedTasks = [...tasks].sort((a, b) => a.id - b.id).sort((a, b) => a.created_at - b.created_at);
+
   return (
     <>
       {isLoading ? (
         <p>Loading</p>
       ) : (
         <div>
-          {console.log(tasks)}
+          {console.log(orderedTasks)}
           <button onClick={handleResetStatuses}>Reset</button>
-          <TaskStatusGroup onAddTask={handleAddTask} onDeleteTask={handleDeleteTask} onEditTask={handleEditTask} tasks={tasks} status={"Must"} />
-          <TaskStatusGroup onAddTask={handleAddTask} onDeleteTask={handleDeleteTask} onEditTask={handleEditTask} tasks={tasks} status={"Should"} />
-          <TaskStatusGroup onAddTask={handleAddTask} onDeleteTask={handleDeleteTask} onEditTask={handleEditTask} tasks={tasks} status={"Can"} />
+          <TaskStatusGroup
+            onAddTask={handleAddTask}
+            onDeleteTask={handleDeleteTask}
+            onEditTask={handleEditTask}
+            tasks={orderedTasks}
+            status={"Must"}
+          />
+          <TaskStatusGroup
+            onAddTask={handleAddTask}
+            onDeleteTask={handleDeleteTask}
+            onEditTask={handleEditTask}
+            tasks={orderedTasks}
+            status={"Should"}
+          />
+          <TaskStatusGroup
+            onAddTask={handleAddTask}
+            onDeleteTask={handleDeleteTask}
+            onEditTask={handleEditTask}
+            tasks={orderedTasks}
+            status={"Can"}
+          />
         </div>
       )}
     </>
