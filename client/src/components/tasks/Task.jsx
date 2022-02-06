@@ -1,5 +1,4 @@
 import { STATUS } from "./statuses";
-import TaskList from "./TaskList";
 
 function Task({ task, onDeleteTask, onEditTask }) {
   const isComplete = task.completed_date ? true : false;

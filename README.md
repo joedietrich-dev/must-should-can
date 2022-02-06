@@ -1,24 +1,5 @@
-# README
+# MUST / SHOULD / CAN
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## WHAT IS THIS?
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+_Must / Should / Can_ is a task list, yes - but it's more than just that. _Must / Should / Can_ is an organizational tool that will help bring order to your chaotic life.
