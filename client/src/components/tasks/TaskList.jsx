@@ -8,7 +8,7 @@ function TaskList() {
   const [isLoading, setIsLoading] = useState(true);
 
   async function fetchTasks() {
-    const res = await fetch("/tasks");
+    const res = await fetch("/tasks/active");
     if (res.ok) {
       const data = await res.json();
       setTasks(data);
