@@ -26,19 +26,19 @@ statuses = Status.create(
 puts "***Tasks***"
 tasks = Task.create(
   [
-    { description: "Fix the house", status: statuses.first, user: users.first },
-    { description: "Write the story", status: statuses.first, user: users.first },
-    { description: "Talk to the doctor", status: statuses.first, user: users.first },
-    { description: "Call the realtor", status: statuses.second, user: users.first },
-    { description: "Cook the chicken", status: statuses.second, user: users.first },
-    { description: "Grab groceries", status: statuses.second, user: users.first },
-    { description: "Inspect the assembly line", status: statuses.second, user: users.first },
-    { description: "Find a place", status: statuses.third, user: users.first },
-    { description: "Wash the car", status: statuses.third, user: users.first },
-    { description: "Wrap birthday present", status: statuses.third, user: users.first },
-    { description: "Fix the apartment", status: statuses.first, user: users.second },
-    { description: "Call the real estate agent", status: statuses.second, user: users.second },
-    { description: "Find a dwelling", status: statuses.third, user: users.second }
+    { description: "Fix the house", status: statuses.first, user: users.first, is_archived: false },
+    { description: "Write the story", status: statuses.first, user: users.first, is_archived: false },
+    { description: "Talk to the doctor", status: statuses.first, user: users.first, is_archived: false },
+    { description: "Call the realtor", status: statuses.second, user: users.first, is_archived: false },
+    { description: "Cook the chicken", status: statuses.second, user: users.first, is_archived: false },
+    { description: "Grab groceries", status: statuses.second, user: users.first, is_archived: false },
+    { description: "Inspect the assembly line", status: statuses.second, user: users.first, is_archived: false },
+    { description: "Find a place", status: statuses.third, user: users.first, is_archived: false },
+    { description: "Wash the car", status: statuses.third, user: users.first, is_archived: false },
+    { description: "Wrap birthday present", status: statuses.third, user: users.first, is_archived: false },
+    { description: "Fix the apartment", status: statuses.first, user: users.second, is_archived: false },
+    { description: "Call the real estate agent", status: statuses.second, user: users.second, is_archived: false },
+    { description: "Find a dwelling", status: statuses.third, user: users.second, is_archived: false }
   ]
 )
 

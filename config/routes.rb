@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  namespace :tasks do
+   namespace :tasks do
     resources :status_resets, only: [:create]
+    get 'archived', to: 'archived_tasks#index'
+    get 'active', to: 'active_tasks#index'
   end
   resources :users
   resources :tasks, only: [:index, :create, :destroy, :update]

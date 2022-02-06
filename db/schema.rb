@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2022_02_06_214405) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "is_archived"
+    t.boolean "is_archived", null: false
     t.index ["status_id"], name: "index_tasks_on_status_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
