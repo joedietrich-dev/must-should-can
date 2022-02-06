@@ -34,7 +34,7 @@ function Task({ task, onDeleteTask, onEditTask }) {
       <button onClick={handleStatusClick} name="Should">
         S
       </button>
-      <button onClick={handleStatusClick} name="Must">
+      <button onClick={handleStatusClick} name="Can">
         C
       </button>
     </div>

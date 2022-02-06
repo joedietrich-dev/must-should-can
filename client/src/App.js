@@ -7,6 +7,7 @@ import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
 import SignupSuccess from "./components/auth/SignupSuccess";
 import TaskPage from "./components/tasks/TaskPage";
+import ArchivePage from "./components/tasks/ArchivePage";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -54,7 +55,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/signup-success" element={<SignupSuccess />} />
         <Route path="/tasks" element={<TaskPage user={user} />} />
-        <Route path="/archived-tasks" element={<TaskPage user={user} />} />
+        <Route path="/archive" element={<ArchivePage user={user} />} />
       </Routes>
     </div>
   );

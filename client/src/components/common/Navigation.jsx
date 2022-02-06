@@ -5,6 +5,12 @@ const LoggedInNavLinks = ({ onLogout }) => {
   return (
     <>
       <li>
+        <NavLink to="/tasks">Tasks</NavLink>
+      </li>
+      <li>
+        <NavLink to="/archive">Archive</NavLink>
+      </li>
+      <li>
         <LogoutButton onLogout={onLogout} />
       </li>
     </>
