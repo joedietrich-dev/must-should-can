@@ -6,7 +6,7 @@ import Home from "./components/Home";
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
 import SignupSuccess from "./components/auth/SignupSuccess";
-import Main from "./components/tasks/Main";
+import TaskPage from "./components/tasks/TaskPage";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -33,7 +33,7 @@ function App() {
 
   const handleLogin = (user) => {
     setUser(user);
-    navigate("/main");
+    navigate("/tasks");
   };
 
   if (isLoading) {
@@ -53,7 +53,8 @@ function App() {
         <Route path="/login" element={<Login user={user} onLogin={handleLogin} />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/signup-success" element={<SignupSuccess />} />
-        <Route path="/main" element={<Main user={user} />} />
+        <Route path="/tasks" element={<TaskPage user={user} />} />
+        <Route path="/archived-tasks" element={<TaskPage user={user} />} />
       </Routes>
     </div>
   );

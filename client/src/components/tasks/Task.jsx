@@ -1,4 +1,4 @@
-import { STATUS } from "./statuses";
+import { STATUS } from "../common/statuses";
 
 function Task({ task, onDeleteTask, onEditTask }) {
   const isComplete = task.completed_date ? true : false;

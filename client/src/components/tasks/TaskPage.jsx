@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 import TaskList from "./TaskList";
 
-function Main({ user }) {
+function TaskPage({ user }) {
   if (!user) {
     return <Navigate to="/login" />;
   }
@@ -13,4 +13,4 @@ function Main({ user }) {
   );
 }
 
-export default Main;
+export default TaskPage;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { STATUS } from "./statuses";
+import { STATUS } from "../common/statuses";
 import TaskStatusGroup from "./TaskStatusGroup";
 
 function TaskList() {
