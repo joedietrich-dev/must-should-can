@@ -1,4 +1,40 @@
 import { STATUS } from "../common/statuses";
+import styled from "styled-components";
+
+const Description = styled.input`
+  font-size: 1em;
+  width: 25em;
+  padding: 0.5rem;
+  border: 0;
+  border-bottom: 2px solid #ccc;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+`;
+const Check = styled.input`
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+  border-bottom: 2px solid #ccc;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+  font-size: 1em;
+  width: 100%;
+  display: grid;
+  place-content: center;
+
+  ::before {
+    content: "✓";
+    font-weight: bold;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+  }
+  :checked::before {
+    transform: scale(1);
+  }
+`;
+const CompletableItem = styled.form`
+  display: grid;
+  grid-template-columns: 2em auto;
+  margin: 0 0.5rem 0.5rem 0.5rem;
+`;
 
 function Task({ task, onDeleteTask, onEditTask }) {
   const isComplete = task.completed_date ? true : false;
@@ -24,9 +60,11 @@ function Task({ task, onDeleteTask, onEditTask }) {
     }
   };
   return (
-    <div>
-      <input type="checkbox" onChange={handleCompletedChange} checked={isComplete} />
-      <input type="text" defaultValue={task.description} onBlur={handleDescriptionBlur} />
+    <div style={{ display: "flex" }}>
+      <CompletableItem>
+        <Check type="checkbox" onChange={handleCompletedChange} checked={isComplete} />
+        <Description type="text" defaultValue={task.description} onBlur={handleDescriptionBlur} />
+      </CompletableItem>
       <button onClick={handleDeleteTask}>X</button>
       <button onClick={handleStatusClick} name="Must">
         M
