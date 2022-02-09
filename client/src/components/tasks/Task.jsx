@@ -1,5 +1,6 @@
 import { STATUS } from "../common/statuses";
 import styled from "styled-components";
+import StyledButton from "../common/StyledButton";
 
 const Description = styled.input`
   font-size: 1em;
@@ -65,16 +66,16 @@ function Task({ task, onDeleteTask, onEditTask }) {
         <Check type="checkbox" onChange={handleCompletedChange} checked={isComplete} />
         <Description type="text" defaultValue={task.description} onBlur={handleDescriptionBlur} />
       </CompletableItem>
-      <button onClick={handleDeleteTask}>X</button>
-      <button onClick={handleStatusClick} name="Must">
+      <StyledButton onClick={handleDeleteTask}>X</StyledButton>
+      <StyledButton onClick={handleStatusClick} name="Must">
         M
-      </button>
-      <button onClick={handleStatusClick} name="Should">
+      </StyledButton>
+      <StyledButton onClick={handleStatusClick} name="Should">
         S
-      </button>
-      <button onClick={handleStatusClick} name="Can">
+      </StyledButton>
+      <StyledButton onClick={handleStatusClick} name="Can">
         C
-      </button>
+      </StyledButton>
     </div>
   );
 }

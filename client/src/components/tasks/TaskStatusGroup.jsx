@@ -1,3 +1,4 @@
+import StyledButton from "../common/StyledButton";
 import Task from "./Task";
 
 function TaskStatusGroup({ tasks, status, onAddTask, onDeleteTask, onEditTask }) {
@@ -12,7 +13,7 @@ function TaskStatusGroup({ tasks, status, onAddTask, onDeleteTask, onEditTask })
       {filterTasks(status).map((task) => (
         <Task key={task.id} task={task} onDeleteTask={onDeleteTask} onEditTask={onEditTask} />
       ))}
-      <button onClick={handleAddClick}>Add {status}</button>
+      <StyledButton onClick={handleAddClick}>Add {status}</StyledButton>
     </div>
   );
 }

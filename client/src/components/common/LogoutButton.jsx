@@ -1,8 +1,10 @@
+import StyledButton from "./StyledButton";
+
 function LogoutButton({ onLogout }) {
   const handleLogout = () => {
     fetch("/logout", { method: "DELETE" }).then(() => onLogout());
   };
-  return <button onClick={handleLogout}>Logout</button>;
+  return <StyledButton onClick={handleLogout}>Logout</StyledButton>;
 }
 
 export default LogoutButton;

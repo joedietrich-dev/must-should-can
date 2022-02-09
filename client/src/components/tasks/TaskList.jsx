@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { STATUS } from "../common/statuses";
+import StyledButton from "../common/StyledButton";
 import TaskStatusGroup from "./TaskStatusGroup";
 
 function TaskList() {
@@ -92,7 +93,7 @@ function TaskList() {
       ) : (
         <div>
           {console.log(orderedTasks)}
-          <button onClick={handleResetStatuses}>Reset</button>
+          <StyledButton onClick={handleResetStatuses}>Reset</StyledButton>
           <TaskStatusGroup
             onAddTask={handleAddTask}
             onDeleteTask={handleDeleteTask}
