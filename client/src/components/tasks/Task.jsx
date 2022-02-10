@@ -4,18 +4,18 @@ import StyledButton from "../common/StyledButton";
 
 const Description = styled.input`
   font-size: 1em;
-  width: 25em;
+  width: 100%;
   padding: 0.5rem;
   border: 0;
-  border-bottom: 2px solid #ccc;
-  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+  border-bottom: 2px solid ${(props) => props.theme.color.main};
+  box-shadow: ${(props) => props.theme.shadow.levelOne};
 `;
 const Check = styled.input`
   appearance: none;
   background-color: #fff;
   margin: 0;
-  border-bottom: 2px solid #ccc;
-  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+  border-bottom: 2px solid ${(props) => props.theme.color.main};
+  box-shadow: ${(props) => props.theme.shadow.levelOne};
   font-size: 1em;
   width: 100%;
   display: grid;
@@ -34,7 +34,6 @@ const Check = styled.input`
 const CompletableItem = styled.form`
   display: grid;
   grid-template-columns: 2em auto;
-  margin: 0 0.5rem 0.5rem 0.5rem;
 `;
 
 function Task({ task, onDeleteTask, onEditTask }) {
@@ -61,7 +60,7 @@ function Task({ task, onDeleteTask, onEditTask }) {
     }
   };
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex", margin: "0 0.5rem 0.5rem 0.5rem" }}>
       <CompletableItem>
         <Check type="checkbox" onChange={handleCompletedChange} checked={isComplete} />
         <Description type="text" defaultValue={task.description} onBlur={handleDescriptionBlur} />

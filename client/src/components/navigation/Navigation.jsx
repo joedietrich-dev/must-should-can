@@ -1,14 +1,14 @@
-import { NavLink } from "react-router-dom";
 import LogoutButton from "./LogoutButton";
+import { StyledNavigation, StyledNavLink, StyledNavList } from "./StyledNav";
 
 const LoggedInNavLinks = ({ onLogout }) => {
   return (
     <>
       <li>
-        <NavLink to="/tasks">Tasks</NavLink>
+        <StyledNavLink to="tasks">Tasks</StyledNavLink>
       </li>
       <li>
-        <NavLink to="/archive">Archive</NavLink>
+        <StyledNavLink to="archive">Archive</StyledNavLink>
       </li>
       <li>
         <LogoutButton onLogout={onLogout} />
@@ -21,10 +21,13 @@ const LoggedOutNavLinks = () => {
   return (
     <>
       <li>
-        <NavLink to="/login">Login</NavLink>
+        <StyledNavLink to="/">Home</StyledNavLink>
       </li>
       <li>
-        <NavLink to="/signup">Sign Up</NavLink>
+        <StyledNavLink to="/login">Login</StyledNavLink>
+      </li>
+      <li>
+        <StyledNavLink to="/signup">Sign Up</StyledNavLink>
       </li>
     </>
   );
@@ -32,14 +35,9 @@ const LoggedOutNavLinks = () => {
 
 function Navigation({ user, onLogout }) {
   return (
-    <nav>
-      <ul>
-        <li>
-          <NavLink to="/">Home</NavLink>
-        </li>
-        {user ? <LoggedInNavLinks onLogout={onLogout} /> : <LoggedOutNavLinks />}
-      </ul>
-    </nav>
+    <StyledNavigation>
+      <StyledNavList>{user ? <LoggedInNavLinks onLogout={onLogout} /> : <LoggedOutNavLinks />}</StyledNavList>
+    </StyledNavigation>
   );
 }
 
