@@ -1,4 +1,4 @@
-import StyledButton from "./StyledButton";
+import StyledButton from "../common/StyledButton";
 
 function LogoutButton({ onLogout }) {
   const handleLogout = () => {
