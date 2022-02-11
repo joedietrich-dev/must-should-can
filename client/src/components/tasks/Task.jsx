@@ -1,39 +1,13 @@
 import { STATUS } from "../common/statuses";
 import styled from "styled-components";
 import StyledButton from "../common/StyledButton";
+import Description from "./Description";
+import Check from "./Check";
 
-const Description = styled.input`
-  font-size: 1em;
-  width: 100%;
-  padding: 0.5rem;
-  border: 0;
-  border-bottom: 2px solid ${(props) => props.theme.color.main};
-  box-shadow: ${(props) => props.theme.shadow.levelOne};
-`;
-const Check = styled.input`
-  appearance: none;
-  background-color: #fff;
-  margin: 0;
-  border-bottom: 2px solid ${(props) => props.theme.color.main};
-  box-shadow: ${(props) => props.theme.shadow.levelOne};
-  font-size: 1em;
-  width: 100%;
-  display: grid;
-  place-content: center;
-
-  ::before {
-    content: "✓";
-    font-weight: bold;
-    transform: scale(0);
-    transition: 120ms transform ease-in-out;
-  }
-  :checked::before {
-    transform: scale(1);
-  }
-`;
 const CompletableItem = styled.form`
   display: grid;
-  grid-template-columns: 2em auto;
+  grid-template-columns: 2rem 1fr;
+  width: 100%;
 `;
 
 function Task({ task, onDeleteTask, onEditTask }) {
@@ -60,7 +34,7 @@ function Task({ task, onDeleteTask, onEditTask }) {
     }
   };
   return (
-    <div style={{ display: "flex", margin: "0 0.5rem 0.5rem 0.5rem" }}>
+    <div style={{ display: "flex", padding: "0 0.5rem 0.5rem 0.5rem", width: "100%", boxSizing: "border-box" }}>
       <CompletableItem>
         <Check type="checkbox" onChange={handleCompletedChange} checked={isComplete} />
         <Description type="text" defaultValue={task.description} onBlur={handleDescriptionBlur} />

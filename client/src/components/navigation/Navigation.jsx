@@ -1,5 +1,5 @@
 import LogoutButton from "./LogoutButton";
-import { StyledNavigation, StyledNavLink, StyledNavList } from "./StyledNav";
+import { Logo, StyledNavigation, StyledNavLink, StyledNavList } from "./StyledNav";
 
 const LoggedInNavLinks = ({ onLogout }) => {
   return (
@@ -36,6 +36,7 @@ const LoggedOutNavLinks = () => {
 function Navigation({ user, onLogout }) {
   return (
     <StyledNavigation>
+      <Logo>Must/Should/Can</Logo>
       <StyledNavList>{user ? <LoggedInNavLinks onLogout={onLogout} /> : <LoggedOutNavLinks />}</StyledNavList>
     </StyledNavigation>
   );

@@ -6,10 +6,10 @@ function TaskPage({ user }) {
     return <Navigate to="/login" />;
   }
   return (
-    <main>
+    <>
       <h1>TASKS</h1>
       <TaskList />
-    </main>
+    </>
   );
 }
 

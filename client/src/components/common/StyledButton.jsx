@@ -5,7 +5,6 @@ const StyledButton = styled.button`
   background-color: ${(props) => props.theme.color.main};
   color: ${(props) => props.theme.color.textOnMain};
   outline: solid 1px ${(props) => props.theme.color.textOnMain};
-
-  padding: 0.75em 1.25em;
+  padding: 0.5rem 1rem;
 `;
 export default StyledButton;

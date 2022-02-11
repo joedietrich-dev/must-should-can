@@ -6,10 +6,10 @@ function ArchivePage({ user }) {
     return <Navigate to="/login" />;
   }
   return (
-    <main>
+    <>
       <h1>ARCHIVED TASKS</h1>
       <ArchiveList />
-    </main>
+    </>
   );
 }
 

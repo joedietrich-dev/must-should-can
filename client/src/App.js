@@ -8,6 +8,8 @@ import Signup from "./components/auth/Signup";
 import SignupSuccess from "./components/auth/SignupSuccess";
 import TaskPage from "./components/tasks/TaskPage";
 import ArchivePage from "./components/tasks/ArchivePage";
+import Main from "./components/common/Main";
+import Welcome from "./components/navigation/Welcome";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -48,15 +50,17 @@ function App() {
   return (
     <div>
       <Navigation user={user} onLogout={handleLogout} />
-      {user ? <p>Welcome {user.name ? user.name : user.email}</p> : null}
-      <Routes>
-        <Route path="/" element={<Home user={user} />} />
-        <Route path="/login" element={<Login user={user} onLogin={handleLogin} />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/signup-success" element={<SignupSuccess />} />
-        <Route path="/tasks" element={<TaskPage user={user} />} />
-        <Route path="/archive" element={<ArchivePage user={user} />} />
-      </Routes>
+      <Welcome user={user} />
+      <Main>
+        <Routes>
+          <Route path="/" element={<Home user={user} />} />
+          <Route path="/login" element={<Login user={user} onLogin={handleLogin} />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signup-success" element={<SignupSuccess />} />
+          <Route path="/tasks" element={<TaskPage user={user} />} />
+          <Route path="/archive" element={<ArchivePage user={user} />} />
+        </Routes>
+      </Main>
     </div>
   );
 }

@@ -1,9 +1,25 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
+const Logo = styled.div`
+  color: ${(props) => props.theme.color.textOnMain};
+  font-size: 2.5rem;
+  font-weight: bold;
+`;
+
 const StyledNavigation = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: ${(props) => props.theme.color.accent};
-  padding: 1em;
+  padding: 1rem 1.5rem;
+  flex-flow: wrap;
+
+  @media (max-width: 640px) {
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+  }
 `;
 
 const StyledNavList = styled.ul`
@@ -13,7 +29,8 @@ const StyledNavList = styled.ul`
   color: ${(props) => props.theme.color.textOnMain};
   align-items: baseline;
   justify-content: end;
-  gap: 1em;
+  gap: 1rem;
+  padding: 0;
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -28,4 +45,4 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-export { StyledNavigation, StyledNavList, StyledNavLink };
+export { StyledNavigation, StyledNavList, StyledNavLink, Logo };

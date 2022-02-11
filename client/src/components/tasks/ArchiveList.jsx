@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import StyledButton from "../common/StyledButton";
+import Description from "./Description";
 import Task from "./Task";
 
 function ArchiveList() {
@@ -57,6 +59,23 @@ function ArchiveList() {
     }
   }
 
+  const ArchiveTask = ({ task, onEditTask, onDeleteTask }) => {
+    const handleDeleteTask = () => {
+      onDeleteTask(task);
+    };
+    const handleDescriptionBlur = (e) => {
+      if (e.target.value !== task.description) {
+        onEditTask({ id: task.id, description: e.target.value });
+      }
+    };
+    return (
+      <div style={{ display: "flex", padding: "0 0.5rem 0.5rem 0.5rem", width: "100%", boxSizing: "border-box" }}>
+        <Description type="text" defaultValue={task.description} onBlur={handleDescriptionBlur} />
+        <StyledButton onClick={handleDeleteTask}>X</StyledButton>
+      </div>
+    );
+  };
+
   const orderedTasks = [...tasks].sort((a, b) => a.completed_date - b.completed_date);
 
   return (
@@ -70,7 +89,7 @@ function ArchiveList() {
           <div>
             <h2>Completed</h2>
             {orderedTasks.map((task) => (
-              <Task key={task.id} task={task} onDeleteTask={handleDeleteTask} onEditTask={handleEditTask} />
+              <ArchiveTask key={task.id} task={task} onDeleteTask={handleDeleteTask} onEditTask={handleEditTask} />
             ))}
           </div>
         </div>
