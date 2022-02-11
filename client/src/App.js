@@ -10,6 +10,7 @@ import TaskPage from "./components/tasks/TaskPage";
 import ArchivePage from "./components/tasks/ArchivePage";
 import Main from "./components/common/Main";
 import Welcome from "./components/navigation/Welcome";
+import Page from "./components/common/Page";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -48,7 +49,7 @@ function App() {
   }
 
   return (
-    <div>
+    <Page>
       <Navigation user={user} onLogout={handleLogout} />
       <Welcome user={user} />
       <Main>
@@ -61,7 +62,7 @@ function App() {
           <Route path="/archive" element={<ArchivePage user={user} />} />
         </Routes>
       </Main>
-    </div>
+    </Page>
   );
 }
 

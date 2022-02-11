@@ -7,5 +7,9 @@ const StyledButton = styled.button`
   outline: solid 1px ${(props) => props.theme.color.textOnMain};
   box-shadow: ${(props) => props.theme.shadow.levelOne};
   padding: 0.5rem 1rem;
+
+  :hover {
+    background-color: ${(props) => props.theme.color.mainLighter};
+  }
 `;
 export default StyledButton;
