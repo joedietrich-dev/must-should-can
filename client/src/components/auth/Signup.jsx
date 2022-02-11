@@ -1,5 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import FormGroup from "../common/FormGroup";
+import Input from "../common/Input";
+import Label from "../common/Label";
+import PageForm from "../common/PageForm";
+import StyledButton from "../common/StyledButton";
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -34,15 +39,21 @@ function Signup() {
   return (
     <div>
       <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email:</label>
-        <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <label htmlFor="password">Password:</label>
-        <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <label htmlFor="password_confirmation">Password Confirmation:</label>
-        <input type="password" id="password_confirmation" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)} />
-        <input type="submit" value="Create Account" />
-      </form>
+      <PageForm onSubmit={handleSubmit}>
+        <FormGroup>
+          <Label htmlFor="email">Email:</Label>
+          <Input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        </FormGroup>
+        <FormGroup>
+          <Label htmlFor="password">Password:</Label>
+          <Input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        </FormGroup>
+        <FormGroup>
+          <Label htmlFor="password_confirmation">Password Confirmation:</Label>
+          <Input type="password" id="password_confirmation" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)} />
+        </FormGroup>
+        <StyledButton as={"input"} type="submit" value="Create Account" />
+      </PageForm>
       {errors ? errors.map((error) => <p key={error}>{error}</p>) : null}
     </div>
   );
