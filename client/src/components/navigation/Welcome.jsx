@@ -13,7 +13,9 @@ const WelcomeText = styled.p`
 
 function Welcome({ user }) {
   return (
-    <WelcomeBanner>{user ? <WelcomeText>Welcome, {user.name ? user.name : user.email}</WelcomeText> : <WelcomeText> </WelcomeText>}</WelcomeBanner>
+    <WelcomeBanner>
+      {user ? <WelcomeText>Welcome, {user.name ? user.name : user.email}</WelcomeText> : <WelcomeText>&nbsp;</WelcomeText>}
+    </WelcomeBanner>
   );
 }
 

@@ -1,5 +1,10 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
+import Input from "../common/Input";
+import FormGroup from "../common/FormGroup";
+import PageForm from "../common/PageForm";
+import StyledButton from "../common/StyledButton";
+import Label from "../common/Label";
 
 function Login({ user, onLogin }) {
   const [email, setEmail] = useState("");
@@ -29,18 +34,22 @@ function Login({ user, onLogin }) {
   }
 
   if (user) {
-    return <Navigate to="/main" />;
+    return <Navigate to="/tasks" />;
   }
   return (
     <div>
       <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email:</label>
-        <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <label htmlFor="password">Password:</label>
-        <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <input type="submit" value="Login" />
-      </form>
+      <PageForm onSubmit={handleSubmit}>
+        <FormGroup>
+          <Label htmlFor="email">Email:</Label>
+          <Input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        </FormGroup>
+        <FormGroup>
+          <Label htmlFor="password">Password:</Label>
+          <Input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        </FormGroup>
+        <StyledButton as={"input"} type="submit" value="Login" />
+      </PageForm>
       {error ? <p>{error}</p> : null}
     </div>
   );
