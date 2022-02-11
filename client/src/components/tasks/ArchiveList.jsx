@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import StyledButton from "../common/StyledButton";
-import Description from "./Description";
-import Task from "./Task";
+import Input from "../common/Input";
 
 function ArchiveList() {
   const [tasks, setTasks] = useState([]);
@@ -70,7 +69,7 @@ function ArchiveList() {
     };
     return (
       <div style={{ display: "flex", padding: "0 0.5rem 0.5rem 0.5rem", width: "100%", boxSizing: "border-box" }}>
-        <Description type="text" defaultValue={task.description} onBlur={handleDescriptionBlur} />
+        <Input type="text" defaultValue={task.description} onBlur={handleDescriptionBlur} />
         <StyledButton onClick={handleDeleteTask}>X</StyledButton>
       </div>
     );

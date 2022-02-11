@@ -1,7 +1,7 @@
 import { STATUS } from "../common/statuses";
 import styled from "styled-components";
 import StyledButton from "../common/StyledButton";
-import Description from "./Description";
+import Input from "../common/Input";
 import Check from "./Check";
 
 const CompletableItem = styled.form`
@@ -37,7 +37,7 @@ function Task({ task, onDeleteTask, onEditTask }) {
     <div style={{ display: "flex", padding: "0 0.5rem 0.5rem 0.5rem", width: "100%", boxSizing: "border-box" }}>
       <CompletableItem>
         <Check type="checkbox" onChange={handleCompletedChange} checked={isComplete} />
-        <Description type="text" defaultValue={task.description} onBlur={handleDescriptionBlur} />
+        <Input type="text" defaultValue={task.description} onBlur={handleDescriptionBlur} />
       </CompletableItem>
       <StyledButton onClick={handleDeleteTask}>X</StyledButton>
       <StyledButton onClick={handleStatusClick} name="Must">
