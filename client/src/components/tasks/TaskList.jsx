@@ -12,7 +12,7 @@ function TaskList() {
   const [isEditing, setIsEditing] = useState(false);
 
   async function fetchTasks() {
-    const res = await fetch("/tasks/active");
+    const res = await fetch("/api/tasks/active");
     if (res.ok) {
       const data = await res.json();
       setTasks(data);
@@ -30,7 +30,7 @@ function TaskList() {
   }, []);
 
   async function handleAddTask(status) {
-    const res = await fetch("/tasks", {
+    const res = await fetch("/api/tasks", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -46,7 +46,7 @@ function TaskList() {
     }
   }
   async function handleEditTask(editedTask) {
-    const res = await fetch(`/tasks/${editedTask.id}`, {
+    const res = await fetch(`/api/tasks/${editedTask.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -69,7 +69,7 @@ function TaskList() {
     }
   }
   async function handleDeleteTask(deletedTask) {
-    const res = await fetch(`/tasks/${deletedTask.id}`, {
+    const res = await fetch(`/api/tasks/${deletedTask.id}`, {
       method: "DELETE",
     });
     if (res.ok) {
@@ -78,7 +78,7 @@ function TaskList() {
     }
   }
   async function handleResetStatuses() {
-    const res = await fetch(`/tasks/status_resets/`, {
+    const res = await fetch(`/api/tasks/status_resets/`, {
       method: "POST",
     });
     if (res.ok) {

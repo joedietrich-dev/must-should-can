@@ -1,4 +1,4 @@
-class Tasks::StatusResetsController < BaseTasksController
+class Api::Tasks::StatusResetsController < BaseTasksController
   # PATCH /tasks/status_resets/
   def create
     can_status = Status.find_by(name: "Can")

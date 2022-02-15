@@ -18,7 +18,7 @@ function App() {
   const navigate = useNavigate();
 
   async function fetchPersistedUser() {
-    const res = await fetch("/me");
+    const res = await fetch("/api/me");
     if (res.ok) {
       const persistedUser = await res.json();
       setUser(persistedUser);

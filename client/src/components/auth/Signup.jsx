@@ -15,7 +15,7 @@ function Signup() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const res = await fetch("/users", {
+    const res = await fetch("/api/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

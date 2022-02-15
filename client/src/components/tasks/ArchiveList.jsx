@@ -8,7 +8,7 @@ function ArchiveList() {
   const [isLoading, setIsLoading] = useState(true);
 
   async function fetchTasks() {
-    const res = await fetch("/tasks/archived");
+    const res = await fetch("/api/tasks/archived");
     if (res.ok) {
       const data = await res.json();
       setTasks(data);
@@ -26,7 +26,7 @@ function ArchiveList() {
   }, []);
 
   async function handleEditTask(editedTask) {
-    const res = await fetch(`/tasks/${editedTask.id}`, {
+    const res = await fetch(`/api/tasks/${editedTask.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -49,7 +49,7 @@ function ArchiveList() {
     }
   }
   async function handleDeleteTask(deletedTask) {
-    const res = await fetch(`/tasks/${deletedTask.id}`, {
+    const res = await fetch(`/api/tasks/${deletedTask.id}`, {
       method: "DELETE",
     });
     if (res.ok) {

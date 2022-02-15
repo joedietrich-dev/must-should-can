@@ -1,4 +1,4 @@
-class TasksController < BaseTasksController
+class Api::TasksController < BaseTasksController
   # GET /tasks
   def index
     @tasks = Task.where(user: @user).includes(:status, :user)
