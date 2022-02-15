@@ -10,7 +10,7 @@ const CompletableItem = styled.form`
   width: 100%;
 `;
 
-function Task({ task, onDeleteTask, onEditTask }) {
+function Task({ task, isEditing, onDeleteTask, onEditTask }) {
   const isComplete = task.completed_date ? true : false;
   const handleDeleteTask = () => {
     onDeleteTask(task);
@@ -34,21 +34,25 @@ function Task({ task, onDeleteTask, onEditTask }) {
     }
   };
   return (
-    <div style={{ display: "flex", padding: "0 0.5rem 0.5rem 0.5rem", width: "100%", boxSizing: "border-box" }}>
+    <div style={{ display: "flex", padding: "0 0 0.5rem 0", width: "100%", boxSizing: "border-box" }}>
       <CompletableItem>
         <Check type="checkbox" onChange={handleCompletedChange} checked={isComplete} />
         <Input type="text" defaultValue={task.description} onBlur={handleDescriptionBlur} />
       </CompletableItem>
-      <StyledButton onClick={handleDeleteTask}>X</StyledButton>
-      <StyledButton onClick={handleStatusClick} name="Must">
-        M
-      </StyledButton>
-      <StyledButton onClick={handleStatusClick} name="Should">
-        S
-      </StyledButton>
-      <StyledButton onClick={handleStatusClick} name="Can">
-        C
-      </StyledButton>
+      {isEditing ? (
+        <>
+          <StyledButton onClick={handleDeleteTask}>X</StyledButton>
+          <StyledButton onClick={handleStatusClick} name="Must">
+            M
+          </StyledButton>
+          <StyledButton onClick={handleStatusClick} name="Should">
+            S
+          </StyledButton>
+          <StyledButton onClick={handleStatusClick} name="Can">
+            C
+          </StyledButton>
+        </>
+      ) : null}
     </div>
   );
 }

@@ -8,7 +8,7 @@ const WelcomeBanner = styled.div`
 `;
 
 const WelcomeText = styled.p`
-  color: ${(props) => props.theme.color.mainContrasts};
+  color: ${(props) => props.theme.color.mainContrast};
   margin: 0;
 `;
 

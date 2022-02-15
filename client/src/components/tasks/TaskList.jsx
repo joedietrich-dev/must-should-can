@@ -3,10 +3,13 @@ import { STATUS } from "../common/statuses";
 import StyledButton from "../common/StyledButton";
 import TaskStatusGroup from "./TaskStatusGroup";
 
+const statuses = ["Must", "Should", "Can"];
+
 function TaskList() {
   const [tasks, setTasks] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
 
   async function fetchTasks() {
     const res = await fetch("/tasks/active");
@@ -80,8 +83,12 @@ function TaskList() {
     });
     if (res.ok) {
       const newTasks = await res.json();
+      setIsEditing(true);
       setTasks(newTasks);
     }
+  }
+  function handleToggleEditStatuses() {
+    setIsEditing((s) => !s);
   }
 
   const orderedTasks = [...tasks].sort((a, b) => a.id - b.id).sort((a, b) => a.created_at - b.created_at);
@@ -92,29 +99,26 @@ function TaskList() {
         <p>Loading</p>
       ) : (
         <div>
-          {console.log(orderedTasks)}
-          <StyledButton onClick={handleResetStatuses}>Reset</StyledButton>
-          <TaskStatusGroup
-            onAddTask={handleAddTask}
-            onDeleteTask={handleDeleteTask}
-            onEditTask={handleEditTask}
-            tasks={orderedTasks}
-            status={"Must"}
-          />
-          <TaskStatusGroup
-            onAddTask={handleAddTask}
-            onDeleteTask={handleDeleteTask}
-            onEditTask={handleEditTask}
-            tasks={orderedTasks}
-            status={"Should"}
-          />
-          <TaskStatusGroup
-            onAddTask={handleAddTask}
-            onDeleteTask={handleDeleteTask}
-            onEditTask={handleEditTask}
-            tasks={orderedTasks}
-            status={"Can"}
-          />
+          {isEditing ? (
+            <div>
+              <StyledButton onClick={handleToggleEditStatuses}>Finish</StyledButton>
+            </div>
+          ) : (
+            <div>
+              <StyledButton onClick={handleToggleEditStatuses}>Edit</StyledButton>
+              <StyledButton onClick={handleResetStatuses}>Reset</StyledButton>
+            </div>
+          )}
+          {statuses.map((status) => (
+            <TaskStatusGroup
+              onAddTask={handleAddTask}
+              onDeleteTask={handleDeleteTask}
+              onEditTask={handleEditTask}
+              tasks={orderedTasks}
+              status={status}
+              isEditing={isEditing}
+            />
+          ))}
         </div>
       )}
     </>
