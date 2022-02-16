@@ -111,6 +111,7 @@ function TaskList() {
           )}
           {statuses.map((status) => (
             <TaskStatusGroup
+              key={status}
               onAddTask={handleAddTask}
               onDeleteTask={handleDeleteTask}
               onEditTask={handleEditTask}
