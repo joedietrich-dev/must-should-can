@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       get 'active', to: 'active_tasks#index'
     end
     
-    resources :users
+    resources :users, only: [:create]
     resources :tasks, only: [:index, :create, :destroy, :update]
 
     # Session Routes
