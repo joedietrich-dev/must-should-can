@@ -13,26 +13,57 @@ function Signup() {
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
 
+  const isEmailValid = () => {
+    return !!email.match(/^[^@]+@[^@]+\.[^@]+$/);
+  };
+
+  const doPasswordsMatch = () => {
+    return password === passwordConfirmation;
+  };
+
+  const isPasswordLongEnough = () => {
+    return password.length >= 8;
+  };
+
+  const isPasswordValid = () => {
+    return isPasswordLongEnough() && doPasswordsMatch();
+  };
+
   async function handleSubmit(e) {
     e.preventDefault();
-    const res = await fetch("/api/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        user: {
-          email,
-          password,
-          password_confirmation: passwordConfirmation,
+
+    if (isEmailValid() && isPasswordValid()) {
+      const res = await fetch("/api/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      }),
-    });
-    if (res.ok) {
-      navigate("/signup-success");
+        body: JSON.stringify({
+          user: {
+            email,
+            password,
+            password_confirmation: passwordConfirmation,
+          },
+        }),
+      });
+      if (res.ok) {
+        navigate("/signup-success");
+      } else {
+        const data = await res.json();
+        setErrors(data.errors);
+      }
     } else {
-      const data = await res.json();
-      setErrors(data.errors);
+      const validationErrors = [];
+      if (!isEmailValid()) {
+        validationErrors.push("Email is not valid.");
+      }
+      if (!isPasswordLongEnough()) {
+        validationErrors.push("Password must be 8 characters or longer.");
+      }
+      if (!doPasswordsMatch()) {
+        validationErrors.push("Password and Password Confirmation must match.");
+      }
+      setErrors(validationErrors);
     }
   }
 
@@ -42,7 +73,14 @@ function Signup() {
       <PageForm onSubmit={handleSubmit}>
         <FormGroup>
           <Label htmlFor="email">Email:</Label>
-          <Input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <Input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          />
         </FormGroup>
         <FormGroup>
           <Label htmlFor="password">Password:</Label>
