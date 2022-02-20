@@ -9,8 +9,8 @@
 puts "***Users***"
 users = User.create(
   [
-    { email: "joe@joedietrich.net", name: "Joe", password: "123" },
-    { email: "john@example.com", name: "John", password: "123" }
+    { email: "joe@example.com", name: "Joe", password: "12345678" },
+    { email: "john@example.com", name: "John", password: "12345678" }
   ]
 )
 
