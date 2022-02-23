@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   namespace :api do
+    
     namespace :tasks do
       resources :status_resets, only: [:create]
       get 'archived', to: 'archived_tasks#index'
@@ -8,6 +9,7 @@ Rails.application.routes.draw do
     
     resources :users, only: [:create]
     resources :tasks, only: [:index, :create, :destroy, :update]
+    resources :notes, only: [:create, :destroy, :update]
 
     # Session Routes
     post "/login", to: "sessions#create"
