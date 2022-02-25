@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     end
     
     resources :users, only: [:create]
-    resources :tasks, only: [:index, :create, :destroy, :update]
+    resources :tasks
     resources :notes, only: [:create, :destroy, :update]
 
     # Session Routes

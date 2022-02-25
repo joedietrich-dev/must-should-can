@@ -4,6 +4,12 @@ class Api::TasksController < BaseTasksController
     @tasks = Task.where(user: @user).includes(:status, :user)
     render json: @tasks
   end
+
+  # GET /tasks/1
+  def show
+    @task = Task.find_by!(user: @user, id: params[:id])
+    render json: @task
+  end
   
   # POST /tasks
   def create
