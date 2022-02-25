@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_23_024819) do
+ActiveRecord::Schema[7.0].define(version: 2022_02_25_021558) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "notes", force: :cascade do |t|
     t.string "contents"
     t.bigint "task_id", null: false
-    t.boolean "complete"
+    t.boolean "is_complete"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["task_id"], name: "index_notes_on_task_id"
